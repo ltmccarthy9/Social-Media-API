@@ -6,7 +6,7 @@ module.exports = {
         User.find({})
         .select('-__v')
           .then((users) => res.json(users))
-          //.catch((err) => res.status(500).json(err));
+          .catch((err) => res.status(500).json(err));
       },
     //get a user
     getSingleUser(req, res) {
