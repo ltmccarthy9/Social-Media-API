@@ -9,6 +9,27 @@ const userSchema = new Schema(
             max_length: 50,
             trim: true,
         },
-        email: 
-    }
-)
+        email: {
+            type: String,
+            required: true,
+            unique: true,
+            //validate email address
+        },
+        thoughts: [thoughtsSchema],
+        friends: [userSchema],
+    },
+    {
+        toJSON: {
+            getters: true,
+            virtuals: true,
+        },
+    },
+);
+
+userSchema.virtual('friendCount').get(() => {
+    return this.friends.length;
+});
+
+const User = model('user', userSchema);
+
+module.exports = User;
