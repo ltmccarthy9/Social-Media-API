@@ -3,8 +3,7 @@ const { User } = require('../models');
 module.exports = {
     //get all users
     getUsers(req, res) {
-        User.find()
-        .then((users) => res.json(users))
+        User.find().then((users) => res.json(users))
         .catch((err) => res.status(500).json(err));
     },
     //get a user
@@ -22,11 +21,8 @@ module.exports = {
     createUser(req, res) {
         User.create(req.body)
         .then((user) => res.json(user))
-        .catch((err) => {
-            console.log(err);
-            return res.status(500).json(err);
-        });
-    },
+        .catch((err) => res.status(500).json(err));
+        },
     // update a user
     updateUser(req, res) {
         User.findOneAndUpdate(
